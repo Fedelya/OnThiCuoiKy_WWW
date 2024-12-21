@@ -29,8 +29,11 @@ public class Plane {
     @OneToMany(mappedBy = "plane")
     private List<Flight> flights;
 
-    public Plane(Integer id, String planeName) {
-        this.id = id;
-        this.planeName = planeName;
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "id=" + id +
+                ", planeName='" + planeName + '\'' +
+                '}';
     }
 }
