@@ -9,15 +9,28 @@ import org.springframework.stereotype.Service;
 import vn.edu.iuh.fit.trananhtien.backend.models.Flight;
 import vn.edu.iuh.fit.trananhtien.backend.repositories.FlightRepository;
 
+import java.util.List;
+
 @Service
 public class FlightService {
     @Autowired
     public FlightRepository flightRepository;
 
-    public Page<Flight> findAll(int pageNo, int pageSize, String sortBy,
-                                String sortDirection){
-        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        return flightRepository.findAll(pageable);
+//    public Page<Flight> findAll(int pageNo, int pageSize, String sortBy,
+//                                String sortDirection){
+//        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+//        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+//        return flightRepository.findAll(pageable);
+//    }
+public void validateFlightDates(Flight newFlight) {
+    List<Flight> conflictingFlights = flightRepository.findConflictingFlights(
+            newFlight.getAirplaneName(),
+            newFlight.getDepartureDate(),
+            newFlight.getArrivalDate()
+    );
+    if (!conflictingFlights.isEmpty()) {
+        throw new IllegalArgumentException("Schedule conflicts with existing flights");
     }
+}
+
 }

@@ -16,41 +16,41 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <a> <a class="btn btn-primary" href="/flights/new">Add New Flight</a>
+            <a class="btn btn-primary" href="/add">Add New Flight</a>
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Flight Number</th>
-                        <th>Departure City</th>
-                        <th>Destination City</th>
-                        <th>Departure Time</th>
-                        <th>Arrival Time</th>
-                        <th>Price</th>
-                        <th>Available Seats</th>
+                        <th>Airplane Name</th>
+                        <th>Departure Airport</th>
+                        <th>Arrival Airport</th>
+                        <th>Departure Date</th>
+                        <th>Arrival Date</th>
+                        <th>Seat Fare</th>
+                        <th>Flight Status</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="flight : ${flights}">
                         <td th:text="${flight.id}">ID</td>
-                        <td th:text="${flight.airplaneName}">Airplane Name</td>
-                        <td th:text="${flight.departureAirport}">Departure Airport</td>
-                        <td th:text="${flight.arrivalAirport}">Arrival Airport</td>
-                        <td th:text="${flight.departureDate}">Departure Date</td>
-                        <td th:text="${flight.arrivalDate}">Arrival Date</td>
-                        <td th:text="${flight.seatFare}">Seat Fare</td>
-                        <td th:text="${flight.flightStatus}">Flight Status</td>
+                        <td th:text="${flight.airplaneName}"></td>
+                        <td th:text="${flight.departureAirport}"></td>
+                        <td th:text="${flight.arrivalAirport}"></td>
+                        <td th:text="${flight.departureDate}"></td>
+                        <td th:text="${flight.arrivalDate}"></td>
+                        <td th:text="${flight.seatFare}"></td>
+                        <td th:text="${flight.flightStatus}"></td>
                         <td>
-                            <a th:href="@{'/flights/' + ${flight.id} + '/edit'}" class="btn btn-secondary">Edit</a>
-                            <a th:href="@{'/flights/' + ${flight.id} + '/delete'}" class="btn btn-danger">Delete</a>
+                            <a th:href="@{'/edit/' + ${flight.id}}" class="btn btn-secondary">Edit</a>
+                            <a th:href="@{'/delete/' + ${flight.id}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

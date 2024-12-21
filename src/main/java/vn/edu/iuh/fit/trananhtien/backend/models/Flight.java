@@ -1,6 +1,7 @@
 package vn.edu.iuh.fit.trananhtien.backend.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
